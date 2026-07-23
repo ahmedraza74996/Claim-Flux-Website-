@@ -345,7 +345,7 @@ a { text-decoration: none; color: inherit; }
   background: none; border: none; font-size: 26px; cursor: pointer; color: var(--gray);
 }
 #consultForm { display: flex; flex-direction: column; gap: 14px; }
-#consultForm input, #consultForm select {
+#consultForm input, #consultForm select, #consultForm textarea {
   padding: 13px 14px;
   border: 1px solid var(--border);
   border-radius: 8px;
@@ -353,7 +353,7 @@ a { text-decoration: none; color: inherit; }
   font-size: 14.5px;
   background: var(--mint-bg);
 }
-#consultForm input:focus, #consultForm select:focus {
+#consultForm input:focus, #consultForm select:focus, #consultForm textarea:focus {
   outline: 2px solid var(--green-dark);
   background: var(--white);
 }
@@ -480,4 +480,69 @@ a { text-decoration: none; color: inherit; }
   background: var(--green-dark);
   border-color: var(--green-dark);
   color: var(--white);
+}
+
+#consultForm textarea {
+  resize: vertical;
+  font-family: var(--font-body);
+  padding: 13px 14px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  font-size: 14.5px;
+  background: var(--mint-bg);
+}
+#consultForm textarea:focus {
+  outline: 2px solid var(--green-dark);
+  background: var(--white);
+}
+
+/* ===== SUCCESS STATE (After Form Submit) ===== */
+.success-state {
+  text-align: center;
+  padding: 20px 0 10px;
+}
+.success-checkmark {
+  width: 70px;
+  height: 70px;
+  margin: 0 auto 20px;
+}
+.success-checkmark circle {
+  stroke: var(--green-dark);
+  stroke-width: 3;
+  fill: none;
+  stroke-dasharray: 166;
+  stroke-dashoffset: 166;
+  animation: circleDraw 0.5s ease forwards;
+}
+.success-checkmark path {
+  stroke: var(--green-dark);
+  stroke-width: 4;
+  fill: none;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-dasharray: 48;
+  stroke-dashoffset: 48;
+  animation: checkDraw 0.35s ease forwards 0.45s;
+}
+@keyframes circleDraw {
+  to { stroke-dashoffset: 0; }
+}
+@keyframes checkDraw {
+  to { stroke-dashoffset: 0; }
+}
+.success-state h3 {
+  font-size: 22px;
+  margin-bottom: 8px;
+  animation: fadeUp 0.4s ease forwards 0.6s;
+  opacity: 0;
+}
+.success-state p {
+  color: var(--gray);
+  font-size: 14.5px;
+  animation: fadeUp 0.4s ease forwards 0.75s;
+  opacity: 0;
+}
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
 }
