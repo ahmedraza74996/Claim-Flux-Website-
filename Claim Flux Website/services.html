@@ -15,7 +15,7 @@
 <header class="site-header">
   <div class="container header-inner">
     <a href="index.html" class="logo-link">
-  <img src="assets/Website Logo.png" alt="ClaimFlux Logo" class="logo-img">
+  <img src="assets/logo.png" alt="ClaimFlux Logo" class="logo-img">
   <span class="logo-text">Claim<span class="logo-text-accent">Flux</span></span>
 </a>
     <nav class="main-nav" id="mainNav">
@@ -24,7 +24,7 @@
       <a href="services.html" class="active">Services</a>
       <a href="contact.html">Contact</a>
     </nav>
-    <a href="contact.html" class="btn btn-primary header-cta">Book Free Consultation</a>
+    <button type="button" class="btn btn-primary header-cta" onclick="openConsultModal()">Book Free Consultation</button>
     <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">
       <span></span><span></span><span></span>
     </button>
@@ -32,7 +32,6 @@
 </header>
 
 <!-- ===== PAGE HERO ===== -->
- 
 <section class="hero" style="padding: 70px 0;">
   <div class="container">
     <p class="eyebrow">Our Services</p>
@@ -255,7 +254,7 @@
   <div class="container">
     <h2 style="font-size:28px; margin-bottom:16px;">Not Sure Which Service You Need?</h2>
     <p style="color:var(--gray); margin-bottom:24px;">Book a free consultation and we'll review your current billing setup at no cost.</p>
-    <a href="contact.html" class="btn btn-primary">Book Free Consultation</a>
+    <button type="button" class="btn btn-primary" onclick="openConsultModal()">Book Free Consultation</button>
   </div>
 </section>
 
@@ -269,7 +268,7 @@
   <div class="container footer-inner footer-inner-5">
     <div class="footer-col">
       <a href="index.html" class="logo-link footer-logo-link">
-        <img src="assets/Website Logo.png" alt="ClaimFlux Logo" class="logo-img footer-logo-img">
+        <img src="assets/logo.png" alt="ClaimFlux Logo" class="logo-img footer-logo-img">
         <span class="logo-text footer-logo-text">Claim<span class="logo-text-accent">Flux</span></span>
       </a>
       <p>Accurate, HIPAA-compliant medical billing and revenue cycle management for growing healthcare practices.</p>
@@ -305,20 +304,47 @@
     <div class="footer-col">
       <h4>Contact</h4>
       <p>📞 +92 333 6081306</p>
-      <p>✉️ info@claimflux.com</p>
+      <p>✉️ claimflux3@gmail.com</p>
       <p>🕒 Mon – Sat: 9AM – 7PM</p>
     </div>
 
     <div class="footer-col">
       <h4>Get Free Consultation</h4>
       <p style="margin-bottom:14px;">Ready to fix your billing? Reach out today.</p>
-      <a href="contact.html" class="btn btn-primary" style="font-size:13.5px; padding:10px 20px;">Contact Us</a>
+      <button type="button" class="btn btn-primary" style="font-size:13.5px; padding:10px 20px;" onclick="openConsultModal()">Contact Us</button>
     </div>
   </div>
   <div class="footer-bottom">
-    <p>&copy; 2026 ClaimFlux. All rights reserved.</p>
+    <p>&copy; <span id="currentYear">2026</span> ClaimFlux. All rights reserved.</p>
   </div>
 </footer>
+
+<!-- ===== CONSULTATION POPUP MODAL ===== -->
+<div class="modal-overlay" id="consultModal">
+  <div class="modal-box">
+    <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+    <div id="consultFormWrap">
+    <h3>Book Your Free Consultation</h3>
+    <p>Let ClaimFlux review your billing — no cost, no obligation.</p>
+    <form id="consultForm">
+      <input type="hidden" name="access_key" value="b494f4cc-b262-4663-bc3c-fe951db711fb">
+      <input type="hidden" name="subject" value="New Consultation Request - ClaimFlux">
+      <input type="text" name="name" placeholder="Your Name" required>
+      <input type="email" name="email" placeholder="Your Email Address" required>
+      <textarea name="message" placeholder="Tell us what you'd like to discuss..." rows="4" required></textarea>
+      <button type="submit" class="btn btn-primary btn-full">Request Consultation</button>
+    </form>
+    </div>
+    <div class="success-state" id="consultSuccess" style="display:none;">
+      <svg class="success-checkmark" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="24"/>
+        <path d="M14 27l7 7 16-16"/>
+      </svg>
+      <h3>Consultation Booked!</h3>
+      <p>Thanks for reaching out — our team will review your details and contact you shortly.</p>
+    </div>
+  </div>
+</div>
 
 <script src="script.js"></script>
 </body>
