@@ -9,13 +9,13 @@
 <link href="https://fonts.googleapis.com/css2?family=Fraunces:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="style.css">
 </head>
-<body>
+<body class="home-page">
 
 <!-- ===== HEADER ===== -->
 <header class="site-header">
   <div class="container header-inner">
     <a href="index.html" class="logo-link">
-  <img src="assets/Website Logo.png" alt="ClaimFlux Logo" class="logo-img">
+  <img src="assets/logo.png" alt="ClaimFlux Logo" class="logo-img">
   <span class="logo-text">Claim<span class="logo-text-accent">Flux</span></span>
 </a>
 
@@ -55,9 +55,9 @@
 <!-- ===== TRUST STRIP ===== -->
 <section class="trust-strip">
   <div class="container trust-grid">
-    <div class="trust-item"><strong>8+</strong><span>Years Experience</span></div>
-    <div class="trust-item"><strong>98%</strong><span>First-Submission Claims</span></div>
-    <div class="trust-item"><strong>100+</strong><span>Specialties Served</span></div>
+    <div class="trust-item"><strong data-count="8" data-suffix="+">0</strong><span>Years Experience</span></div>
+    <div class="trust-item"><strong data-count="98" data-suffix="%">0</strong><span>First-Submission Claims</span></div>
+    <div class="trust-item"><strong data-count="100" data-suffix="+">0</strong><span>Specialties Served</span></div>
     <div class="trust-item"><strong>HIPAA</strong><span>Fully Compliant</span></div>
   </div>
 </section>
@@ -209,7 +209,7 @@
   <div class="container footer-inner footer-inner-5">
     <div class="footer-col">
       <a href="index.html" class="logo-link footer-logo-link">
-        <img src="assets/Website Logo.png" alt="ClaimFlux Logo" class="logo-img footer-logo-img">
+        <img src="assets/logo.png" alt="ClaimFlux Logo" class="logo-img footer-logo-img">
         <span class="logo-text footer-logo-text">Claim<span class="logo-text-accent">Flux</span></span>
       </a>
       <p>Accurate, HIPAA-compliant medical billing and revenue cycle management for growing healthcare practices.</p>
@@ -245,7 +245,7 @@
     <div class="footer-col">
       <h4>Contact</h4>
       <p>📞 +92 333 6081306</p>
-      <p>✉️ info@claimflux.com</p>
+      <p>✉️ claimflux3@gmail.com</p>
       <p>🕒 Mon – Sat: 9AM – 7PM</p>
     </div>
 
@@ -256,7 +256,7 @@
     </div>
   </div>
   <div class="footer-bottom">
-    <p>&copy; 2026 ClaimFlux. All rights reserved.</p>
+    <p>&copy; <span id="currentYear">2026</span> ClaimFlux. All rights reserved.</p>
   </div>
 </footer>
 
@@ -264,23 +264,26 @@
 <div class="modal-overlay" id="consultModal">
   <div class="modal-box">
     <button class="modal-close" id="modalClose" aria-label="Close">&times;</button>
+    <div id="consultFormWrap">
     <h3>Book Your Free Consultation</h3>
     <p>Let ClaimFlux review your billing — no cost, no obligation.</p>
     <form id="consultForm">
+      <input type="hidden" name="access_key" value="b494f4cc-b262-4663-bc3c-fe951db711fb">
+      <input type="hidden" name="subject" value="New Consultation Request - ClaimFlux">
       <input type="text" name="name" placeholder="Your Name" required>
-      <input type="tel" name="phone" placeholder="Your Phone Number" required>
-      <p style="font-size:13.5px; color:var(--gray); margin-bottom:-4px;">Select a Service</p>
-<div class="service-select-grid">
-  <button type="button" class="service-option" data-value="Medical Billing & Coding">Billing & Coding</button>
-  <button type="button" class="service-option" data-value="Revenue Cycle Management">RCM</button>
-  <button type="button" class="service-option" data-value="Credentialing Services">Credentialing</button>
-  <button type="button" class="service-option" data-value="Denial Management">Denial Mgmt</button>
-  <button type="button" class="service-option" data-value="Eligibility Verification">Eligibility</button>
-  <button type="button" class="service-option" data-value="Other">Other</button>
-</div>
-<input type="hidden" name="service" id="serviceInput">
+      <input type="email" name="email" placeholder="Your Email Address" required>
+      <textarea name="message" placeholder="Tell us what you'd like to discuss..." rows="4" required></textarea>
       <button type="submit" class="btn btn-primary btn-full">Request Consultation</button>
     </form>
+    </div>
+    <div class="success-state" id="consultSuccess" style="display:none;">
+      <svg class="success-checkmark" viewBox="0 0 52 52">
+        <circle cx="26" cy="26" r="24"/>
+        <path d="M14 27l7 7 16-16"/>
+      </svg>
+      <h3>Consultation Booked!</h3>
+      <p>Thanks for reaching out — our team will review your details and contact you shortly.</p>
+    </div>
   </div>
 </div>
 
