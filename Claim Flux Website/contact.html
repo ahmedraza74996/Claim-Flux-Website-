@@ -15,7 +15,7 @@
 <header class="site-header">
   <div class="container header-inner">
     <a href="index.html" class="logo-link">
-  <img src="logo.png" alt="ClaimFlux Logo" class="logo-img">
+  <img src="assets/logo.png" alt="ClaimFlux Logo" class="logo-img">
   <span class="logo-text">Claim<span class="logo-text-accent">Flux</span></span>
 </a>
     <nav class="main-nav" id="mainNav">
@@ -117,12 +117,43 @@
   <svg viewBox="0 0 32 32" width="30" height="30" fill="white"><path d="M16.001 2.667c-7.363 0-13.334 5.97-13.334 13.333 0 2.353.615 4.646 1.782 6.667L2.667 29.333l6.84-1.795a13.27 13.27 0 0 0 6.494 1.795h.006c7.363 0 13.333-5.97 13.333-13.333S23.364 2.667 16.001 2.667zm7.803 19.03c-.332.933-1.646 1.708-2.688 1.933-.715.152-1.646.273-4.786-1.03-4.017-1.664-6.606-5.73-6.808-5.995-.194-.266-1.633-2.175-1.633-4.15s1.03-2.943 1.394-3.35c.365-.406.795-.508 1.061-.508.266 0 .53.002.762.014.244.012.573-.093.895.683.332.795 1.13 2.75 1.229 2.95.1.2.166.433.033.7-.133.267-.2.433-.398.667-.2.233-.42.52-.6.7-.2.2-.408.416-.176.815.233.4 1.033 1.705 2.218 2.762 1.523 1.36 2.807 1.78 3.207 1.98.4.2.633.166.867-.1.233-.267 1-1.166 1.267-1.566.266-.4.532-.333.897-.2.365.133 2.318 1.093 2.717 1.293.4.2.666.3.766.466.1.167.1.958-.232 1.892z"/></svg>
 </a>
 
+<!-- ===== QUICK QUESTIONS CHAT WIDGET ===== -->
+<div class="quick-chat-widget">
+  <button class="quick-chat-toggle" id="quickChatToggle" aria-label="Quick Questions">
+    <span class="quick-chat-icon-open">💬</span>
+    <span class="quick-chat-icon-close">✕</span>
+  </button>
+
+  <div class="quick-chat-panel" id="quickChatPanel">
+    <div class="quick-chat-header">
+      <h4>Quick Questions</h4>
+      <p>Tap a question for an instant answer</p>
+    </div>
+
+    <div class="quick-chat-body" id="quickChatBody">
+      <div class="quick-chat-questions" id="quickChatQuestions">
+        <button class="quick-chat-q" data-answer="Our fees are percentage-based — we only charge a small percentage of what we actually collect for you. No flat monthly fees, no hidden costs.">💰 How much do you charge?</button>
+        <button class="quick-chat-q" data-answer="Most practices are fully onboarded within 1–2 weeks, including integration with your practice management or EHR system.">⏱️ How long does onboarding take?</button>
+        <button class="quick-chat-q" data-answer="Yes — our team has hands-on billing experience across a wide range of specialties including cardiology, dermatology, orthopedics, internal medicine, and more.">🏥 Do you work with my specialty?</button>
+        <button class="quick-chat-q" data-answer="Yes, all our processes are fully HIPAA-compliant, including secure data transmission and restricted access controls.">🔒 Is my patient data secure?</button>
+        <button class="quick-chat-q" data-answer="No long-term lock-in contracts. You can cancel anytime with 30 days' notice — we earn your business every month.">📄 Do I need a long-term contract?</button>
+      </div>
+
+      <div class="quick-chat-answer" id="quickChatAnswer" style="display:none;">
+        <button class="quick-chat-back" id="quickChatBack">← Back to questions</button>
+        <p id="quickChatAnswerText"></p>
+        <button type="button" class="btn btn-primary btn-full" style="margin-top:16px;" onclick="openConsultModal()">Book Free Consultation</button>
+      </div>
+    </div>
+  </div>
+</div>
+
 <!-- ===== FOOTER ===== -->
 <footer class="site-footer">
   <div class="container footer-inner footer-inner-5">
     <div class="footer-col">
       <a href="index.html" class="logo-link footer-logo-link">
-        <img src="logo.png" alt="ClaimFlux Logo" class="logo-img footer-logo-img">
+        <img src="assets/logo.png" alt="ClaimFlux Logo" class="logo-img footer-logo-img">
         <span class="logo-text footer-logo-text">Claim<span class="logo-text-accent">Flux</span></span>
       </a>
       <p>Accurate, HIPAA-compliant medical billing and revenue cycle management for growing healthcare practices.</p>
@@ -166,6 +197,19 @@
       <h4>Get Free Consultation</h4>
       <p style="margin-bottom:14px;">Ready to fix your billing? Reach out today.</p>
       <button type="button" class="btn btn-primary" style="font-size:13.5px; padding:10px 20px;" onclick="openConsultModal()">Contact Us</button>
+    </div>
+  </div>
+
+   <!-- ===== WHATSAPP QR CODE ===== -->
+  <div class="qr-section">
+    <div class="container qr-inner">
+      <div class="qr-text">
+        <h4>Scan to Chat on WhatsApp</h4>
+        <p>Prefer a quick chat? Scan the QR code with your phone camera to message us instantly.</p>
+      </div>
+      <div class="qr-box">
+        <img src="assets/whatsapp-qr.png" alt="WhatsApp QR Code - ClaimFlux">
+      </div>
     </div>
   </div>
   <div class="footer-bottom">
