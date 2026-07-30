@@ -53,6 +53,35 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
+  // ---------- QUICK QUESTIONS CHAT WIDGET ----------
+  const quickChatToggle = document.getElementById('quickChatToggle');
+  const quickChatWidget = document.querySelector('.quick-chat-widget');
+  const quickChatQuestions = document.getElementById('quickChatQuestions');
+  const quickChatAnswer = document.getElementById('quickChatAnswer');
+  const quickChatAnswerText = document.getElementById('quickChatAnswerText');
+  const quickChatBack = document.getElementById('quickChatBack');
+
+  if (quickChatToggle) {
+    quickChatToggle.addEventListener('click', function () {
+      quickChatWidget.classList.toggle('open');
+    });
+
+    document.querySelectorAll('.quick-chat-q').forEach(function (btn) {
+      btn.addEventListener('click', function () {
+        quickChatAnswerText.textContent = btn.dataset.answer;
+        quickChatQuestions.style.display = 'none';
+        quickChatAnswer.style.display = 'block';
+      });
+    });
+
+    if (quickChatBack) {
+      quickChatBack.addEventListener('click', function () {
+        quickChatAnswer.style.display = 'none';
+        quickChatQuestions.style.display = 'flex';
+      });
+    }
+  }
+
   // ---------- CONSULTATION POPUP MODAL ----------
   const consultModal = document.getElementById('consultModal');
   const modalClose = document.getElementById('modalClose');
@@ -208,4 +237,58 @@ document.addEventListener('DOMContentLoaded', function () {
 const yearSpan = document.getElementById('currentYear');
 if (yearSpan) {
   yearSpan.textContent = new Date().getFullYear();
+}
+
+// ---------- BEFORE/AFTER BARS ANIMATION ----------
+document.addEventListener('DOMContentLoaded', function () {
+  const compareBars = document.querySelectorAll('.compare-bar');
+  if (compareBars.length) {
+    const barObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          const bar = entry.target;
+          const percent = bar.dataset.percent;
+          setTimeout(function () {
+            bar.style.width = percent + '%';
+          }, 150);
+          barObserver.unobserve(bar);
+        }
+      });
+    }, { threshold: 0.3 });
+    compareBars.forEach(function (bar) { barObserver.observe(bar); });
+  }
+});
+
+// ---------- SAVINGS CALCULATOR ----------
+function calculateSavings() {
+  const revenueInput = document.getElementById('calcRevenue');
+  const denialInput = document.getElementById('calcDenialRate');
+  const resultBox = document.getElementById('calcResult');
+
+  const revenue = parseFloat(revenueInput.value);
+  const denialRate = parseFloat(denialInput.value) || 20;
+
+  if (!revenue || revenue <= 0) {
+    resultBox.innerHTML = '<div class="calc-placeholder"><div class="calc-placeholder-icon">⚠️</div><p>Please enter a valid monthly collections amount.</p></div>';
+    return;
+  }
+
+  // Assumptions: ClaimFlux typically reduces denial rate to ~4% and improves first-pass collection.
+  const improvedDenialRate = 4;
+  const currentLoss = revenue * (denialRate / 100);
+  const improvedLoss = revenue * (improvedDenialRate / 100);
+  const monthlyRecovery = Math.max(0, currentLoss - improvedLoss);
+  const annualRecovery = monthlyRecovery * 12;
+
+  resultBox.innerHTML = `
+    <div class="calc-output">
+      <div class="calc-output-label">Estimated Monthly Recovery</div>
+      <div class="calc-output-value">$${monthlyRecovery.toLocaleString(undefined, {maximumFractionDigits:0})}</div>
+      <div class="calc-output-sub">Based on reducing your denial rate from ${denialRate}% to ~4%</div>
+      <hr>
+      <div class="calc-output-row"><span>Estimated Annual Recovery</span><strong>$${annualRecovery.toLocaleString(undefined, {maximumFractionDigits:0})}</strong></div>
+      <div class="calc-output-row"><span>Your Current Denial Rate</span><strong>${denialRate}%</strong></div>
+      <div class="calc-output-row"><span>Target Denial Rate</span><strong>~4%</strong></div>
+    </div>
+  `;
 }
